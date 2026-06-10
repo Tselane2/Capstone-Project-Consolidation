@@ -615,3 +615,148 @@ python manage.py test newsapp --verbosity=2
 | `NewsletterTests` | 5 | Visibility, creation permissions, article association |
 | `SignalTests` | 6 | Email dispatch, Twitter posting, failure handling (all mocked) |
 | `ModelTests` | 4 | Role properties, subscription clearing, `is_independent` |
+
+
+## Running the Project with Virtual Environment (Capstone Requirement)
+
+Follow these steps to run the Django News application using a Python virtual environment:
+
+### 1. Create and activate a virtual environment
+
+```bash
+python -m venv venv
+```
+
+**Windows:**
+
+```bash
+venv\Scripts\activate
+```
+
+**macOS / Linux:**
+
+```bash
+source venv/bin/activate
+```
+
+### 2. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Apply migrations
+
+```bash
+python manage.py migrate
+```
+
+### 4. Create a superuser (optional)
+
+```bash
+python manage.py createsuperuser
+```
+
+### 5. Run the development server
+
+```bash
+python manage.py runserver
+```
+
+The app will be available at:
+
+```
+http://localhost:8000
+```
+
+---
+
+## Running the Project with Docker (Capstone Requirement)
+
+This project includes a working Dockerfile that allows you to run the application inside a container.
+
+### 1. Build the Docker image
+
+```bash
+docker build -t django-news .
+```
+
+### 2. Run the container
+
+```bash
+docker run -p 8000:8000 django-news
+```
+
+The application will be available at:
+
+```
+http://localhost:8000
+```
+
+### 3. Stopping the container
+
+Press **CTRL + C** or run:
+
+```bash
+docker ps
+docker stop <container-id>
+```
+
+---
+
+## Environment Variables (Important for Reviewers)
+
+This project uses a `.env` file for configuration.  
+**Do NOT commit your real `.env` file to GitHub.**
+
+For the reviewer:
+
+- A temporary `.env` file has been included in the submission folder (not in the repo).
+- After review, this file can be safely deleted.
+
+To create your own `.env`, copy:
+
+```
+.env.example → .env
+```
+
+Then fill in:
+
+```
+SECRET_KEY=
+DEBUG=True
+EMAIL_BACKEND=django.core.mail.backends.console.EmailBackend
+TWITTER_BEARER_TOKEN=
+```
+
+---
+
+## Branching Structure (Capstone Requirement)
+
+This project follows the required Git workflow:
+
+- **main** — final merged code  
+- **docs** — Sphinx documentation and docstrings  
+- **container** — Dockerfile and containerisation setup  
+
+Both branches have been merged into **main** as required.
+
+---
+
+## Sphinx Documentation
+
+Full HTML documentation is located in:
+
+```
+docs/_build/html/index.html
+```
+
+To rebuild the docs:
+
+```bash
+cd docs
+make html
+```
+
+---
+
