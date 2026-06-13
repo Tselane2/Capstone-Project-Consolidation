@@ -20,10 +20,8 @@ All external I/O (``send_mail``, ``requests.post``) is patched using
 ``unittest.mock`` so tests run without network or email dependencies.
 """
 
-from unittest.mock import MagicMock, patch
 
 from django.test import Client, TestCase
-from django.urls import reverse
 
 from rest_framework import status
 from rest_framework.authtoken.models import Token
@@ -529,4 +527,5 @@ class SignalTests(TestCase):
         self.publisher = Publisher.objects.create(name="Signal Pub")
         self.article = Article.objects.create(
             title="Signal Article",
-            content="Content
+            content="Content" 
+        )
