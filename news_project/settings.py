@@ -86,14 +86,28 @@ TEMPLATES = [
 WSGI_APPLICATION = "news_project.wsgi.application"
 
 # ---------------------------------------------------------------------------
-# Database — SQLite (development)
+# Database — MariaDB/MySQL (default)
 # ---------------------------------------------------------------------------
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': config("DB_NAME", default="news_app"),
+        'USER': config("DB_USER", default="root"),
+        'PASSWORD': config("DB_PASSWORD", default="yourpassword"),
+        'HOST': config("DB_HOST", default="localhost"),
+        'PORT': config("DB_PORT", default="3306"),
     }
 }
+
+# ---------------------------------------------------------------------------
+# Optional: SQLite (for quick local testing)
+# ---------------------------------------------------------------------------
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 # ---------------------------------------------------------------------------
 # Custom user model
